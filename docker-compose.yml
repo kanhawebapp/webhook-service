@@ -5,7 +5,7 @@ services:
     restart: always
     environment:
       RABBITMQ_URL: amqp://guest:guest@dhwaniastro-rabbitmq:5672
-      RAZORPAY_WEBHOOK_SECRET: nkdPt8OpyM5qj33oBqEPi4qo
+      RAZORPAY_WEBHOOK_SECRET: eqoAPlGUy4pzKTI3btotf4HZ
       PORT: 8004
     ports:
       - "8004:8004"

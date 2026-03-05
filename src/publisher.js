@@ -6,7 +6,7 @@ import amqp from 'amqplib';
 const app = express();
 app.use(express.json());
 
-const RAZORPAY_WEBHOOK_SECRET = process.env.RAZORPAY_SECRET || 'nkdPt8OpyM5qj33oBqEPi4qo';
+const RAZORPAY_WEBHOOK_SECRET = process.env.RAZORPAY_SECRET || 'eqoAPlGUy4pzKTI3btotf4HZ';
 const RABBITMQ_URL = process.env.RABBITMQ_URL || "amqp://guest:guest@rabbitmq:5672";
 const QUEUE = "payment.success";
 
