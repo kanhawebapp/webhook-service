@@ -2,6 +2,7 @@ import 'dotenv/config';
 import express from 'express';
 import crypto from 'crypto';
 import amqp from 'amqplib';
+import { stat } from 'fs';
 
 const app = express();
 app.use(express.json());
@@ -53,7 +54,7 @@ app.post("/webhook", async (req, res) => {
  console.log("Received webhook event:", req.body.event, "boddy:", req.body);
  console.log("payload----from payment gatway-----------:",req.body.payload);
   // Only handle payment captured
-  if (req.body.event === "payment.captured") {
+  if (req.body.event === "payment.captured" || req.body.event === "payment.failed") {
     const payload = req.body.payload.payment.entity;
     console.log("payload----from payment gatway-----------:",payload);
           const message = {
@@ -73,8 +74,9 @@ console.log("Webhook Payload Message:", message);
       userId: payload.notes?.userId,
       rechargePackId: payload.notes?.rechargePackId,
       coins: payload.amount / 100,
+      status: req.body.event === "payment.captured" ? "captured" : "failed",
     });
-    console.log(`Processed payment.captured: ${payload.id}`);
+    console.log(`Processed ${req.body.event}: ${payload.id}`);
   }
 
   res.json({ status: "ok" });
