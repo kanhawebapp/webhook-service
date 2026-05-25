@@ -50,17 +50,28 @@ app.post("/webhook", async (req, res) => {
     console.error(" Invalid webhook signature");
     return res.status(400).json({ error: "Invalid signature" });
   }
-   console.log("Received valid webhook:", req.body.event, "bodyyyyyyyyyyyyyyyy:", req.body);
+
   // Only handle payment captured
   if (req.body.event === "payment.captured") {
     const payload = req.body.payload.payment.entity;
+    console.log("payload----from payment gatway-----------:",payload);
+          const message = {
+  paymentId: payload.id,
+  orderId: payload.order_id,
+  amount: payload.amount / 100,
+  userId: payload.notes?.userId,
+  rechargePackId: payload.notes?.rechargePackId,
+  coins: Number(payload.notes?.coins),
+};
+
+console.log("Webhook Payload Message:", message);
     await publishToRabbitMQ({
       paymentId: payload.id,
       orderId: payload.order_id,
       amount: payload.amount / 100,
       userId: payload.notes?.userId,
       rechargePackId: payload.notes?.rechargePackId,
-      coins: payload.notes?.coins,
+      coins: payload.amount / 100,
     });
     console.log(`Processed payment.captured: ${payload.id}`);
   }
