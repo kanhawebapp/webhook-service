@@ -50,7 +50,7 @@ app.post("/webhook", async (req, res) => {
     console.error(" Invalid webhook signature");
     return res.status(400).json({ error: "Invalid signature" });
   }
-
+   console.log("Received valid webhook:", req.body.event, "bodyyyyyyyyyyyyyyyy:", req.body);
   // Only handle payment captured
   if (req.body.event === "payment.captured") {
     const payload = req.body.payload.payment.entity;
