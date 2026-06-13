@@ -64,6 +64,7 @@ app.post("/webhook", async (req, res) => {
   userId: payload.notes?.userId,
   rechargePackId: payload.notes?.rechargePackId,
   coins: Number(payload.notes?.coins),
+  serviceType: payload.notes?.serviceType || "RECHARGE",
 };
 
 console.log("Webhook Payload Message:", message);
