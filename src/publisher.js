@@ -75,6 +75,7 @@ console.log("Webhook Payload Message:", message);
       userId: payload.notes?.userId,
       rechargePackId: payload.notes?.rechargePackId,
       coins: payload.amount / 100,
+      serviceType: payload.notes?.serviceType || "RECHARGE",
       status: req.body.event === "payment.captured" ? "captured" : "failed",
     });
     console.log(`Processed ${req.body.event}: ${payload.id}`);
