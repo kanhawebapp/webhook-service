@@ -75,7 +75,8 @@ app.post("/webhook", async (req, res) => {
       cashback: payload.notes?.cashback ? Number(payload.notes.cashback) : 0,
       country: payload.notes?.country,
       state: payload.notes?.state,
-      city: payload.notes?.city
+      city: payload.notes?.city,
+      platform:payload.notes?.platform
     };
 
     console.log("Webhook Payload Message:", message);
@@ -94,7 +95,8 @@ app.post("/webhook", async (req, res) => {
       cashback: payload.notes?.cashback ? Number(payload.notes.cashback) : 0,
       country: payload.notes?.country,
       state: payload.notes?.state,
-      city: payload.notes?.city
+      city: payload.notes?.city,
+      platform:payload.notes?.platform
     });
     console.log(`Processed ${req.body.event}: ${payload.id}`);
   }
