@@ -8,9 +8,9 @@ const app = express();
 app.use(express.json());
 
 const RAZORPAY_WEBHOOK_SECRET =
-  process.env.RAZORPAY_SECRET || "eqoAPlGUy4pzKTI3btotf4HZ";
+  process.env.RAZORPAY_SECRET ;
 const RABBITMQ_URL =
-  process.env.RABBITMQ_URL || "amqp://guest:guest@rabbitmq:5672";
+  process.env.RABBITMQ_URL ;
 const QUEUE = "payment.success";
 
 // RabbitMQ connection pool (optional for performance)
