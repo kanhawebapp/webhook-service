@@ -70,7 +70,7 @@ app.post("/webhook", async (req, res) => {
       serviceType: payload.notes?.serviceType || "RECHARGE",
       status: req.body.event === "payment.captured" ? "captured" : "failed",
       couponCode: payload.notes?.couponCode || null,
-      couponType: payload.notes?.type || "NORMAL",
+      couponType: payload.notes?.couponType || "NORMAL",
       discount: payload.notes?.discount ? Number(payload.notes.discount) : 0,
       cashback: payload.notes?.cashback ? Number(payload.notes.cashback) : 0,
       country: payload.notes?.country,
